@@ -55,6 +55,7 @@ const VideoPressEdit = CoreVideoEdit =>
 				interactive: false,
 				rating: null,
 				lastRequestedMediaId: null,
+				isUpdatingRating: false,
 			};
 			this.posterImageButton = createRef();
 		}
@@ -205,13 +206,33 @@ const VideoPressEdit = CoreVideoEdit =>
 		};
 
 		onChangeRating = rating => {
+			const { guid } = this.props.attributes;
+			const originalRating = this.state.rating;
+
+			if ( ! guid ) {
+				return;
+			}
+
 			if ( -1 === indexOf( [ 'G', 'PG-13', 'R-17', 'X-18' ], rating ) ) {
 				return;
 			}
 
-			// todo: request to set the rating
+			this.setState( { isUpdatingRating: true, rating } );
 
-			this.setState( { rating: rating } );
+			apiFetch( {
+				path: '/wpcom/v2/videopress/meta',
+				method: 'POST',
+				data: {
+					guid: guid,
+					rating: rating,
+				},
+			} )
+				.then( success => {
+					if ( ! success ) {
+						this.setState( { rating: originalRating } );
+					}
+				} )
+				.finally( () => this.setState( { isUpdatingRating: false } ) );
 		};
 
 		render() {
@@ -225,7 +246,7 @@ const VideoPressEdit = CoreVideoEdit =>
 				preview,
 				setAttributes,
 			} = this.props;
-			const { fallback, isFetchingMedia, interactive, rating } = this.state;
+			const { fallback, isFetchingMedia, isUpdatingRating, interactive, rating } = this.state;
 			const { autoplay, caption, controls, loop, muted, poster, preload } = attributes;
 
 			const videoPosterDescription = `video-block__poster-image-description-${ instanceId }`;
@@ -315,12 +336,12 @@ const VideoPressEdit = CoreVideoEdit =>
 						</PanelBody>
 						<PanelBody title={ __( 'Video File Settings', 'jetpack' ) }>
 							<div className="video-file-spinner-placeholder">
-								{ isFetchingMedia && <Spinner /> }
+								{ ( isFetchingMedia || isUpdatingRating ) && <Spinner /> }
 							</div>
 							<SelectControl
 								label={ __( 'Rating', 'jetpack' ) }
 								value={ rating }
-								disabled={ isFetchingMedia }
+								disabled={ isFetchingMedia || isUpdatingRating }
 								options={ [
 									{
 										label: __( 'G', 'jetpack' ),
