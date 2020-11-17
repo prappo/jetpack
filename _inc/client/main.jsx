@@ -55,7 +55,11 @@ import QueryRewindStatus from 'components/data/query-rewind-status';
 import { getRewindStatus } from 'state/rewind';
 import ReconnectModal from 'components/reconnect-modal';
 
-const recommendationsRoutes = [ '/recommendations', '/recommendations/site-type' ];
+const recommendationsRoutes = [
+	'/recommendations',
+	'/recommendations/site-type',
+	'/recommendations/woocommerce',
+];
 
 const setupRoutes = [
 	'/setup',
@@ -269,6 +273,7 @@ class Main extends React.Component {
 				break;
 			case '/recommendations':
 			case '/recommendations/site-type':
+			case '/recommendations/woocommerce':
 				pageComponent = <Recommendations />;
 				break;
 			default:
