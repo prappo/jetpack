@@ -63,6 +63,7 @@ const recommendationsRoutes = [
 	'/recommendations/related-posts',
 	'/recommendations/creative-mail',
 	'/recommendations/site-accelerator',
+	'/recommendations/summary',
 ];
 
 const setupRoutes = [
@@ -282,6 +283,7 @@ class Main extends React.Component {
 			case '/recommendations/related-posts':
 			case '/recommendations/creative-mail':
 			case '/recommendations/site-accelerator':
+			case '/recommendations/summary':
 				pageComponent = <Recommendations />;
 				break;
 			default:
