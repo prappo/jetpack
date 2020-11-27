@@ -115,7 +115,12 @@ export default function DialogueEdit ( {
 							isPressed={ currentSpeaker?.hasBoldStyle }
 							onClick={ () => {
 								const mediaAudio = transcritionBridge?.getMediaAudio();
-								mediaAudio[ transcritionBridge.player.isPlaying ? 'pause' : 'play' ]();
+								if ( transcritionBridge.player.isPlaying ) {
+									return mediaAudio.pause();
+								}
+
+								mediaAudio.setCurrentTime( transcritionBridge.timeCodeToSeconds( timeStamp ) );
+								mediaAudio.play();
 							} }
 						/>
 					</ToolbarGroup>
