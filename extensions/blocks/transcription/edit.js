@@ -1,3 +1,5 @@
+/* global mejs */
+
 /**
  * External dependencies
  */
@@ -89,10 +91,32 @@ function TranscriptionEdit ( {
 		} ) } )
 	), [ setAttributes, speakers ] );
 
+	const pickMediaPlayer = useCallback( () => {
+		if ( ! containertRef?.current ) {
+			return;
+		}
+
+		const { current: wrapperElement } = containertRef;
+		if ( ! wrapperElement ) {
+			return;
+		}
+
+		const mediaAudio = wrapperElement.querySelector( '.mejs-container audio' );
+		if ( ! mediaAudio ) {
+			return;
+		}
+
+		return {
+			mediaAudio,
+			timeCodeToSeconds: mejs.Utils.timeCodeToSeconds,
+		};
+	}, [] );
+
 	// Context bridge.
 	const contextProvision = {
 		setAttributes: useMemo( () => setAttributes, [ setAttributes ] ),
 		updateSpeakers,
+		pickMediaPlayer,
 
 		attributes: {
 			showTimeStamp,
