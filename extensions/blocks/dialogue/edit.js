@@ -70,6 +70,23 @@ export default function DialogueEdit ( {
 	const speakersFromContext = context[ 'jetpack/conversation-speakers' ];
 	const showTimeStamp = context[ 'jetpack/transcription-showtimestamp' ];
 
+	// Transcription context. A bridge between dialogue and transcription blocks.
+	const transcritionBridge = useContext( TranscriptionContext );
+
+	// Catch the audio element reference.
+	const [ mediaAudioEl, setMediaAudioEl ] = useState( transcritionBridge?.pickMediaPlayer()?.mediaAudio );
+
+	function getMediaAudio () {
+		if ( mediaAudioEl ) {
+			return mediaAudioEl;
+		}
+
+		const mediaAudio = transcritionBridge?.pickMediaPlayer().mediaAudio;
+
+		setMediaAudioEl( mediaAudio );
+		return mediaAudio;
+	}
+
 	// Speakers list.
 	const speakers = speakersFromContext?.length ? speakersFromContext : defaultSpeakers;
 
@@ -77,9 +94,6 @@ export default function DialogueEdit ( {
 	const currentSpeakerSlug = ! speaker && ! speakerSlug ? defaultSpeakerSlug : speakerSlug;
 	const currentSpeaker = getSpeakerBySlug( speakers, currentSpeakerSlug );
 	const speakerLabel = currentSpeaker?.speaker || speaker;
-
-	// Transcription context. A bridge between dialogue and transcription blocks.
-	const transcritionBridge = useContext( TranscriptionContext );
 
 	const baseClassName = 'wp-block-jetpack-dialogue';
 
