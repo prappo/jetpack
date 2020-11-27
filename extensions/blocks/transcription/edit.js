@@ -94,6 +94,7 @@ function TranscriptionEdit ( {
 
 	// Catch the audio element reference.
 	const [ mediaAudioEl, setMediaAudioEl ] = useState();
+	const [ playerStatus, setPlayerStatus ] = useState();
 
 	const pickMediaPlayer = useCallback( () => {
 		if ( ! containertRef?.current ) {
@@ -119,17 +120,28 @@ function TranscriptionEdit ( {
 		}
 
 		const mediaAudio = pickMediaPlayer();
+		if ( ! mediaAudio ) {
+			return;
+		}
+
+		mediaAudio.addEventListener( 'play', () => setPlayerStatus( 'playing' ) );
+		mediaAudio.addEventListener( 'pause', () => setPlayerStatus( 'paused' ) );
 
 		setMediaAudioEl( mediaAudio );
 		return mediaAudio;
 	}, [ pickMediaPlayer, mediaAudioEl ] );
 
 	// Context bridge.
-	const contextProvision = {
+	const contextProvider = {
 		setAttributes: useMemo( () => setAttributes, [ setAttributes ] ),
 		updateSpeakers,
 		getMediaAudio,
 		timeCodeToSeconds: mejs.Utils.timeCodeToSeconds,
+
+		player: {
+			isPaused: playerStatus === 'paused',
+			isPlaying: playerStatus === 'playing',
+		},
 
 		attributes: {
 			showTimeStamp,
@@ -156,7 +168,7 @@ function TranscriptionEdit ( {
 	const baseClassName = 'wp-block-jetpack-transcription';
 
 	return (
-		<TranscritptionContext.Provider value={ contextProvision }>
+		<TranscritptionContext.Provider value={ contextProvider }>
 			<div ref={ containertRef } className={ className }>
 				<BlockControls>
 					<ToolbarGroup>
