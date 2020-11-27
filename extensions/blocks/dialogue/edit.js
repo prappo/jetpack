@@ -108,11 +108,14 @@ export default function DialogueEdit ( {
 				{ transcritionBridge?.getMediaAudio() && (
 					<ToolbarGroup>
 						<ToolbarButton
-							icon="controls-play"
+							icon={ transcritionBridge.player.isPlaying
+								? "controls-pause"
+								: "controls-play"
+							}
 							isPressed={ currentSpeaker?.hasBoldStyle }
 							onClick={ () => {
 								const mediaAudio = transcritionBridge?.getMediaAudio();
-								mediaAudio.play();
+								mediaAudio[ transcritionBridge.player.isPlaying ? 'pause' : 'play' ]();
 							} }
 						/>
 					</ToolbarGroup>
