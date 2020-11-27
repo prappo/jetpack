@@ -14,6 +14,7 @@ import {
 	useRef,
 	useCallback,
 	useMemo,
+	useState,
 } from '@wordpress/element';
 import {
 	InnerBlocks,
@@ -91,6 +92,9 @@ function TranscriptionEdit ( {
 		} ) } )
 	), [ setAttributes, speakers ] );
 
+	// Catch the audio element reference.
+	const [ mediaAudioEl, setMediaAudioEl ] = useState();
+
 	const pickMediaPlayer = useCallback( () => {
 		if ( ! containertRef?.current ) {
 			return;
@@ -106,17 +110,26 @@ function TranscriptionEdit ( {
 			return;
 		}
 
-		return {
-			mediaAudio,
-			timeCodeToSeconds: mejs.Utils.timeCodeToSeconds,
-		};
+		return mediaAudio;
 	}, [] );
+
+	const getMediaAudio = useCallback( () => {
+		if ( mediaAudioEl ) {
+			return mediaAudioEl;
+		}
+
+		const mediaAudio = pickMediaPlayer();
+
+		setMediaAudioEl( mediaAudio );
+		return mediaAudio;
+	}, [ pickMediaPlayer, mediaAudioEl ] );
 
 	// Context bridge.
 	const contextProvision = {
 		setAttributes: useMemo( () => setAttributes, [ setAttributes ] ),
 		updateSpeakers,
-		pickMediaPlayer,
+		getMediaAudio,
+		timeCodeToSeconds: mejs.Utils.timeCodeToSeconds,
 
 		attributes: {
 			showTimeStamp,
