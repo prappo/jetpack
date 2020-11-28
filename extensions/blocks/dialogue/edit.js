@@ -112,14 +112,13 @@ export default function DialogueEdit ( {
 								? "controls-pause"
 								: "controls-play"
 							}
-							isPressed={ currentSpeaker?.hasBoldStyle }
 							onClick={ () => {
 								const mediaAudio = transcritionBridge?.getMediaAudio();
 								if ( transcritionBridge.player.isPlaying ) {
 									return mediaAudio.pause();
 								}
 
-								mediaAudio.setCurrentTime( transcritionBridge.timeCodeToSeconds( timeStamp ) );
+								mediaAudio.currentTime = transcritionBridge.timeCodeToSeconds( timeStamp );
 								mediaAudio.play();
 							} }
 						/>

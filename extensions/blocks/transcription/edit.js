@@ -106,7 +106,7 @@ function TranscriptionEdit ( {
 			return;
 		}
 
-		const mediaAudio = wrapperElement.querySelector( '.mejs-container audio' );
+		const mediaAudio = wrapperElement.querySelector( 'audio' );
 		if ( ! mediaAudio ) {
 			return;
 		}
