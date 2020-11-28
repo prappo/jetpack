@@ -137,6 +137,7 @@ function TranscriptionEdit ( {
 		updateSpeakers,
 		getMediaAudio,
 		timeCodeToSeconds: mejs.Utils.timeCodeToSeconds,
+		secondsToTimeCode: mejs.Utils.secondsToTimeCode,
 
 		player: {
 			isPaused: playerStatus === 'paused',
