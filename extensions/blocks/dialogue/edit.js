@@ -108,6 +108,16 @@ export default function DialogueEdit ( {
 				{ transcritionBridge?.getMediaAudio() && (
 					<ToolbarGroup>
 						<ToolbarButton
+							icon="controls-back"
+							onClick={ () => {
+								const mediaAudio = transcritionBridge?.getMediaAudio();
+								const forward = mediaAudio.currentTime - 5;
+								setAttributes( { timeStamp: transcritionBridge.secondsToTimeCode( forward ) } );
+								mediaAudio.currentTime = forward;
+							} }
+						/>
+
+						<ToolbarButton
 							icon={ transcritionBridge.player.isPlaying
 								? "controls-pause"
 								: "controls-play"
@@ -120,6 +130,15 @@ export default function DialogueEdit ( {
 
 								mediaAudio.currentTime = transcritionBridge.timeCodeToSeconds( timeStamp );
 								mediaAudio.play();
+							} }
+						/>
+						<ToolbarButton
+							icon="controls-forward"
+							onClick={ () => {
+								const mediaAudio = transcritionBridge?.getMediaAudio();
+								const forward = mediaAudio.currentTime + 5;
+								setAttributes( { timeStamp: transcritionBridge.secondsToTimeCode( forward ) } );
+								mediaAudio.currentTime = forward;
 							} }
 						/>
 					</ToolbarGroup>
