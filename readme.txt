@@ -1,7 +1,7 @@
 === Jetpack - WP Security, Backup, Speed, & Growth ===
 Contributors: automattic, adamkheckler, aduth, akirk, allendav, alternatekev, andy, annezazu, apeatling, azaozz, batmoo, barry, beaulebens, biskobe, blobaugh, brbrr, cainm, cena, cfinke, chaselivingston, chellycat, clickysteve, csonnek, danielbachhuber, davoraltman, daniloercoli, delawski, designsimply, dllh, drawmyface, dsmart, dzver, ebinnion, egregor, eliorivero, enej, eoigal, erania-pinnera, ethitter, fgiannar, gcorne, georgestephanis, gibrown, goldsounds, hew, hugobaeta, hypertextranch, iammattthomas, iandunn, jblz, jasmussen, jeffgolenski, jeherve, jenhooks, jenia, jessefriedman, jgs, jkudish, jmdodd, joanrho, johnjamesjacoby, jshreve, kbrownkd, keoshi, koke, kraftbj, lancewillett, leogermani, lschuyler, macmanx, martinremy, matt, matveb, mattwiebe, maverick3x6, mcsf, mdawaffe, mdbitz, MichaelArestad, migueluy, mikeyarce, mkaz, nancythanki, nickmomrik, obenland, oskosk, pento, professor44, rachelsquirrel, rdcoll, ryancowles, richardmuscat, richardmtl, robertbpugh, roccotripaldi, samhotchkiss, scarstocea, scottsweb, sdquirk, sermitr, simison, stephdau, tmoorewp, tyxla, Viper007Bond, westi, yoavf, zinigor
 Tags: WP, backup, social, AMP, WooCommerce, malware, scan, spam, CDN, social
-Stable tag: 9.1
+Stable tag: 9.2
 Requires at least: 5.5
 Requires PHP: 5.6
 Tested up to: 5.6
@@ -243,53 +243,22 @@ Our Cookie and Consent Banner can help you comply with GDPR. The European Unionâ
 
 == Changelog ==
 
-= 9.2 =
+= 9.3 =
 
-* Release date: December 1, 2020
-* Release post: https://wp.me/p1moTy-scn
+* Release date: January 12, 2021
+* Release post: https://wp.me/p1moTy-sgZ
 
 **Enhancements**
 
-* Connection Flow: clarify error message when the options table is not writable.
-* Contact Form Block: display fallback link when the block is rendered in non-WordPress contexts, such as subscription emails.
-* Contact Form Block: display the correct default email address and subject in the form block settings.
-* Dashboard: clarify language around support options.
-* Instagram Embeds: add support for embed parameters supported by Instagram.
-* Payments Block: move unreadable notice to the sidebar.
-* Pinterest Block: ensure that Pinterest embeds are displayed nicely in non-WordPress contexts, such as subscription emails.
-* Podcast Block: display fallback link when the block is rendered in non-WordPress contexts, such as RSS feeds.
-* Search: improve URL formatting for the expanded search layout.
-* Sharing: ensure the first suitable image found in a post is always the one used in Open Graph Image meta tags.
-* Site Health Tools: update description of Synchronization issues for better usability.
-* Slideshow Block: ensure that slideshows are displayed nicely in subscription emails.
-* Status: improve detection of staging servers.
-* Story Block: improve display of the block.
-* Synchronization: improve synchronization of comment status, taxononmies, and terms between your site and WordPress.com.
-* Tiled Gallery Block: improve rendering when the block is rendered in non-WordPress contexts, such as subscription emails.
-* WhatsApp button Block: improve text alignment on mobile devices.
-* WordPress.com Toolbar: include admin color in user's REST API output.
+*
 
 **Improved compatibility**
 
-* Autoloader: support Composer 2.0.7.
-* General: continued work towards ensuring that Jetpack is fully compatible with the upcoming version of PHP, PHP 8.
-* General: ensure Jetpack's full compatibility with the upcoming WordPress 5.6 release.
-* General: update Jetpack's minimum required WordPress version to 5.5, in anticipation of the upcoming WordPress 5.6 release.
-* Sharing: disable Open Graph Meta tags added by the Web Stories plugin when Jetpack's tags are active.
-* Stats: support Web Stories plugin.
-* Synchronization: ensure better synchronization of post meta data (used by Publicize, Subscriptions, Search) in WordPress 5.6.
+*
 
 **Bug fixes**
 
-* Connection: handle XMLRPC requests when SERVER_PORT is not defined.
-* External Media: fix a conflict with CoBlock's image replace feature.
-* Dashboard: fix incorrect links to Jetpack credentials form.
-* Google Analytics: ensure compatibility with Google Analytics 4 (GA4).
-* Sitemaps: ensure that the Home URL is slashed on subdirectory websites.
-* Social Icons widget: display only one icon when a URL matches both a domain and the feed URL match.
-* Sync: avoid trying to sync when something else disabled syncing a request.
-* Whatsapp Button Block: fix Guyana country code metadata.
-* WordPress.com REST API: restore post comments when untrashing a post, such as via the mobile apps.
+*
 
 --------
 
