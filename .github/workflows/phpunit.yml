@@ -3,7 +3,7 @@ name: PHPUnit tests
 on: pull_request
 
 ### TODO whitelist branches:
- # branches:
+# branches:
 #   only:
 #     - master
 #     - master-stable
@@ -11,7 +11,6 @@ on: pull_request
 #     - /^feature\/.*$/
 
 env:
-  WP_TRAVISCI: "phpunit"
   COMPOSER_ROOT_VERSION: "dev-master"
 
 jobs:
@@ -73,13 +72,10 @@ jobs:
       - name: Setup and run tests
         env:
           WP_BRANCH: ${{ matrix.wp }}
-          TRAVIS_PHP_VERSION: ${{ matrix.php }}
+          PHP_VERSION: ${{ matrix.php }}
         run: |
-          sudo systemctl start mysql.service
-          export PLUGIN_SLUG=$(basename $(pwd))
-          export PATH="$HOME/.config/composer/vendor/bin:$HOME/.composer/vendor/bin:$PATH"
-          ./tests/setup-travis.sh
-          ./tests/run-travis.sh
+          ./.github/actions/php-pipeline/setup-env.sh
+          ./.github/actions/php-pipeline/phpunit.sh
 
   legacy_full_sync:
     name: "Legacy Full Sync"
@@ -111,11 +107,8 @@ jobs:
       - name: Setup and run tests
         env:
           WP_BRANCH: latest
-          TRAVIS_PHP_VERSION: "7.0"
+          PHP_VERSION: "7.0"
           LEGACY_FULL_SYNC: "1"
         run: |
-          sudo systemctl start mysql.service
-          export PLUGIN_SLUG=$(basename $(pwd))
-          export PATH="$HOME/.config/composer/vendor/bin:$HOME/.composer/vendor/bin:$PATH"
-          ./tests/setup-travis.sh
-          ./tests/run-travis.sh
+          ./.github/actions/php-pipeline/setup-env.sh
+          ./.github/actions/php-pipeline/phpunit.sh
