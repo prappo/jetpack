@@ -199,7 +199,6 @@ json-endpoints/jetpack/json-api-jetpack-endpoints.php
 json-endpoints.php
 locales.php
 modules/after-the-deadline.php
-modules/calypsoify/class.jetpack-calypsoify.php
 modules/carousel/jetpack-carousel.php
 modules/carousel.php
 modules/comment-likes.php
