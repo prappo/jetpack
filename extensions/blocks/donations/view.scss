@@ -23,7 +23,7 @@
 
 		&::before {
 			content: '';
-			background-color: $dark-gray-200;
+			background-color: $gray-600;
 			width: $spinner-size;
 			height: $spinner-size;
 			opacity: 0.7;
