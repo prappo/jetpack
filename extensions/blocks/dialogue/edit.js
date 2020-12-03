@@ -33,7 +33,7 @@ import SpeakersDropdown from './components/speakers-control';
 import TimeStampControl from './components/time-stamp-control';
 import TranscriptionContext from '../transcription/components/context';
 import { defaultSpeakers, defaultSpeakerSlug } from '../transcription/edit';
-import { formatUppercase } from '../../shared/icons';
+import { formatUppercase, controlForwardFive, controlBackFive } from '../../shared/icons';
 
 function getSpeakerBySlug( speakers, slug ) {
 	const speaker = find( speakers, ( contextSpeaker ) => contextSpeaker.speakerSlug === slug );
@@ -108,7 +108,7 @@ export default function DialogueEdit ( {
 				{ transcritionBridge?.getMediaAudio() && (
 					<ToolbarGroup>
 						<ToolbarButton
-							icon="controls-back"
+							icon={ controlBackFive }
 							onClick={ () => {
 								const mediaAudio = transcritionBridge?.getMediaAudio();
 								const forward = mediaAudio.currentTime - 5;
@@ -133,7 +133,7 @@ export default function DialogueEdit ( {
 							} }
 						/>
 						<ToolbarButton
-							icon="controls-forward"
+							icon={ controlForwardFive }
 							onClick={ () => {
 								const mediaAudio = transcritionBridge?.getMediaAudio();
 								const forward = mediaAudio.currentTime + 5;
