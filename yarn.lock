@@ -9043,10 +9043,10 @@ fn.name@1.x.x:
   resolved "https://registry.yarnpkg.com/fn.name/-/fn.name-1.1.0.tgz#26cad8017967aea8731bc42961d04a3d5988accc"
   integrity sha512-GRnmB5gPyJpAhTQdSZTSp9uaPSvl09KoYcMQtsB9rQoOmzs9dH6ffeccH+Z+cv6P68Hu5bC6JjRh4Ah/mHSNRw==
 
-focus-trap@6.2.1:
-  version "6.2.1"
-  resolved "https://registry.yarnpkg.com/focus-trap/-/focus-trap-6.2.1.tgz#20edaa4a5eb21d9c2c9859653747edbdf7a6bf0e"
-  integrity sha512-WX23tBrHkyx+ogYOGPyJFWEmpleZesEcoK4EvBgZd++hEzW6P+5H0o9suM0Cw+M9E4cKmGKngxXU7sYg5qTiRQ==
+focus-trap@6.2.2:
+  version "6.2.2"
+  resolved "https://registry.yarnpkg.com/focus-trap/-/focus-trap-6.2.2.tgz#0e6f391415b0697c99da932702dedd13084fa131"
+  integrity sha512-qWovH9+LGoKqREvJaTCzJyO0hphQYGz+ap5Hc4NqXHNhZBdxCi5uBPPcaOUw66fHmzXLVwvETLvFgpwPILqKpg==
   dependencies:
     tabbable "^5.1.4"
 
